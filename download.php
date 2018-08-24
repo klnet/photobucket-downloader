@@ -86,7 +86,16 @@ foreach ($lines as $line) {
 	try {
 		$downloadCount++;
 		$response = $client->get($src);
-		$data = strval($response->getBody());
+
+		$contentType = '';
+		$contentTypes = $response->getHeader('Content-Type');
+		if (is_array($contentTypes)) {
+			$contentType = reset($contentTypes);
+		}
+
+		if (preg_match('#^image/#', $contentType)) {
+			$data = strval($response->getBody());
+		}
 	} catch (Exception $e) {
 		$errorCount++;
 		$message = $e->getMessage();
