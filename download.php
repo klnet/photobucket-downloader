@@ -64,6 +64,7 @@ foreach ($lines as $line) {
 	$path = preg_replace('#^https?://#', '', $path);
 	$path = preg_replace('#%5b/IMG%5d$#', '', $path);
 	$path = preg_replace('#%\d+#', '', $path, -1, $count);
+	$path = rtrim($path, '/');
 	if ($count > 0) {
 		var_dump($src);
 		exit;
