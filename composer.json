@@ -1,0 +1,6 @@
+{
+    "name": "klnet/photobucket-downloader",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    }
+}
