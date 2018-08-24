@@ -79,7 +79,7 @@ foreach ($lines as $line) {
 		mkdir($dir, 0777, true);
 	}
 
-	$percent = sprintf('%.3f', $i / $lineCount);
+	$percent = sprintf('%.2f', $i / $lineCount * 100);
 	$srcShorten = substr(preg_replace('#^https?://#', '', $src), 0, 6) . '..' . substr($src, -30);
 	echo("Downloading {$percent}%: {$srcShorten} ");
 	$data = '';
