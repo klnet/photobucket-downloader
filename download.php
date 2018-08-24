@@ -59,8 +59,15 @@ foreach ($lines as $line) {
 
 	$src = $matches[1];
 
-	$src = preg_replace('#^http://\[IMG\]#', '', $src);
-	$src = preg_replace('#%5b/IMG%5d$#', '', $src);
+	$checkSizeBeforeSkip = false;
+	$src = preg_replace('#^http://\[IMG\]#', '', $src, -1, $count);
+	if ($count > 0) {
+		$checkSizeBeforeSkip = true;
+	}
+	$src = preg_replace('#%5b/IMG%5d$#', '', $src, -1, $count);
+	if ($count > 0) {
+		$checkSizeBeforeSkip = true;
+	}
 
 	$path = $src;
 	$path = str_replace('%20', '_', $path);
@@ -72,7 +79,7 @@ foreach ($lines as $line) {
 		exit;
 	}
 	$path = __DIR__ . '/files/' . preg_replace('#[^a-z0-9/\.\-_]#i', '', $path);
-	if (file_exists($path) && filesize($path) > 0) {
+	if (file_exists($path) && (!$checkSizeBeforeSkip || filesize($path) > 0)) {
 		$skipCount++;
 		continue;
 	}
