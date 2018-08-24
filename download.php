@@ -39,8 +39,8 @@ $i = 0;
 $downloadCount = 0;
 $errorCount = 0;
 $skipCount = 0;
-$recentCount = 50;
-$recentAlertCount = 40;
+$recentCount = 100;
+$recentAlertCount = 80;
 $recentSizes = [];
 foreach ($lines as $line) {
 	$i++;
